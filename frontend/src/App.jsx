@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 
-const API = "VITE_API_URL/api";
+const API = `${import.meta.env.VITE_API_URL}/api`;
 
 function App() {
   const [num1, setNum1] = useState("");
