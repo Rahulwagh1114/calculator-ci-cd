@@ -1,0 +1,43 @@
+
+name: Frontend Deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "frontend/**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. GitHub se code download
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. Node.js setup
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3. Frontend dependencies install
+      - name: Install Dependencies
+        working-directory: frontend
+        run: npm install
+
+      # 4. Check frontend build
+      - name: Build Frontend
+        working-directory: frontend
+        run: npm run build
+
+      # 5. Deploy to Vercel
+      - name: Deploy to Vercel
+        run: |
+          npm install -g vercel
+          vercel deploy --prod --yes \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --cwd frontend

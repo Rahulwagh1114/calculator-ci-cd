@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --bg-1: #0b1226;
+  --bg-2: #162447;
+  --card: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --text: #eef1f8;
+  --muted: #98a2bd;
+  --gold: #e6b95c;
+  --gold-dark: #c99a35;
+  --danger: #ff6b6b;
+  --success: #5ee0a0;
+}
+
+body {
+  font-family: "Manrope", system-ui, sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% 10%, var(--bg-2), var(--bg-1) 60%);
+  background-attachment: fixed;
+}
+
+.app {
+  width: min(460px, calc(100% - 32px));
+  margin: 48px auto;
+  padding: 32px 28px;
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+}
+
+.app h1 {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  color: var(--gold);
+}
+
+/* ---------- Inputs ---------- */
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 72px 1fr;
+  gap: 10px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px 12px;
+  font-family: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+select {
+  text-align: center;
+  cursor: pointer;
+  color: var(--gold);
+  font-size: 20px;
+}
+
+select option {
+  background: var(--bg-1);
+  color: var(--text);
+}
+
+input:focus,
+select:focus {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(230, 185, 92, 0.2);
+}
+
+/* number input ke up/down arrows hatao */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* ---------- Calculate button ---------- */
+
+.calc-btn {
+  width: 100%;
+  margin-top: 16px;
+  padding: 15px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1b1405;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+  box-shadow: 0 8px 20px rgba(230, 185, 92, 0.3);
+}
+
+.calc-btn:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 10px 26px rgba(230, 185, 92, 0.42);
+}
+
+.calc-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* ---------- Error & Result ---------- */
+
+.error {
+  margin-top: 14px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--danger);
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  border-radius: 10px;
+}
+
+.result {
+  margin-top: 18px;
+  padding: 18px;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--success);
+  background: rgba(94, 224, 160, 0.08);
+  border: 1px solid rgba(94, 224, 160, 0.25);
+  border-radius: 14px;
+  word-break: break-all;
+  animation: pop 0.25s ease-out;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------- History ---------- */
+
+.history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border);
+}
+
+.history-head h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.clear-btn {
+  padding: 7px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--danger);
+  background: transparent;
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.clear-btn:hover {
+  background: var(--danger);
+  color: #fff;
+}
+
+.app > p {
+  margin-top: 12px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+ul {
+  list-style: none;
+  margin-top: 12px;
+}
+
+li {
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--card-border);
+}
+
+li b {
+  float: right;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ---------- Accessibility & mobile ---------- */
+
+.calc-btn:focus-visible,
+.clear-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (max-width: 420px) {
+  .app {
+    margin: 24px auto;
+    padding: 24px 18px;
+  }
+  .row {
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
