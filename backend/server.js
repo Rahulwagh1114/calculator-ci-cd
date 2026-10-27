@@ -60,7 +60,7 @@ app.get("/api/history", async (req, res) => {
 // Clear history
 app.delete("/api/history", async (req, res) => {
   await History.deleteMany({});
-  res.json({ message: "History is cleared" });
+  res.json({ message: "History are cleared" });
 });
 
 app.listen(process.env.PORT, "0.0.0.0", () => {
