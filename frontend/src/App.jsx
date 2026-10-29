@@ -23,7 +23,7 @@ function App() {
   const handleCalculate = async () => {
     setError("");
     if (num1 === "" || num2 === "") {
-      setError("Dono numbers daalo");
+      setError("Entered two numbers");
       return;
     }
     const res = await fetch(`${API}/calculate`, {
