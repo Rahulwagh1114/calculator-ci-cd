@@ -32,6 +32,10 @@ jobs:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
+      - name: Install Frontend Dependencies
+        working-directory: frontend
+        run: npm ci --include=dev
+
       - name: Pull Vercel Settings
         run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
         env:
