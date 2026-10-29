@@ -38,11 +38,14 @@ jobs:
 
       - name: Install Frontend Dependencies
         working-directory: frontend
-        run: npm ci
+        run: |
+          npm ci --include=dev
+          npm ls vite
+          npx vite --version
 
       - name: Build Frontend
         working-directory: frontend
-        run: vercel build --prod --token="$VERCEL_TOKEN"
+        run: npm run build
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
