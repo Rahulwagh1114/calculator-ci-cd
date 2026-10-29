@@ -35,7 +35,6 @@ jobs:
         run: npm install --global vercel
 
       - name: Link and Pull Vercel Settings
-        working-directory: frontend
         run: |
           vercel link --yes --project "$VERCEL_PROJECT_ID" --token="$VERCEL_TOKEN"
           vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
@@ -45,7 +44,8 @@ jobs:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
       - name: Deploy to Vercel
-        working-directory: frontend
         run: vercel deploy --prod --yes --token="$VERCEL_TOKEN"
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
